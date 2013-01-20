@@ -1,0 +1,46 @@
+// Code for a FlyingBall - a self-animated object
+// A separate "controller" program will create an instance of this class.
+// We compile, but don't diretly run, this code.
+// Oct. 2008
+
+import objectdraw.*;
+import java.awt.*;
+
+public class FlyingBall extends ActiveObject {
+    
+    // set how far (in pixels) that the ball will fly in each step
+    private double DX = -3;
+    private double DY = -5;
+      
+    private FramedOval fball;    
+    private DrawingCanvas canvas;	
+    
+    public FlyingBall(Location startPoint, DrawingCanvas pCanvas) {
+        canvas = pCanvas;
+        fball = new FramedOval(startPoint, 10, 10, canvas);
+		  
+		/*  Color myShade;
+		  if (Math.random() < .5)
+		  		myShade = Color.RED;
+		  else
+		  		myShade = Color.BLUE;
+				
+		  fball.setColor(myShade);*/
+        start();	// activates the run() routine below
+    }
+    
+    public void run() {
+        while (fball.getY() > canvas.getHeight()-400 ) {
+            fball.move(DX, DY);	// draw ball in new location
+            pause(100);				// pause for  N  milliseconds
+        }
+     }
+	  
+	 public void removeFromCanvas(){
+	 fball.removeFromCanvas();
+	 } 
+	 
+	 public void setColor(Color c){
+	 fball.setColor(c);
+	 }
+} // end of class
